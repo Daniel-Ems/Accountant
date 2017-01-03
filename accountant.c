@@ -9,6 +9,14 @@ char *lowercase(char *yesNo);
 int main()
 {
 
+//TODO Implement a load function. Probably try and list all files found in a 
+// particular file path and then allow the user to select what they want to do. 
+
+//TODO You also need to create unique file names. 
+FILE *fp = fopen("//home//danny//Desktop//test.txt", "w");
+
+
+
 int flag = 0;
 char *buf = malloc(64 * sizeof(char));
 char *yesNo;
@@ -51,10 +59,16 @@ exit(0);
 puts(" ");
 float paycheck;
 printf("How much money do you make a paycheck?\n");
+scanf("%f", &paycheck);
+
+//TODO Make the file write reflect their selection for weekly, biweekly,
+// or monthly. This should probably be done in the if statents, while 
+// probably also creating respective varibales to carry thoughout the program. 
+fprintf(fp,"paycheck = %.2f", paycheck);
+
 
 int menu;
 
-scanf("%f", &paycheck);
 printf("do you make %.2f\n(0)weekly\n(1)biweekly\n(2)monthly\n", paycheck);
 scanf("%d", &menu);
 
@@ -83,6 +97,7 @@ scanf("%f", &bills);
 printf("That means you have %.2f of expendable cash a month\n %.2f a year\n",
         ((paycheck * 2) - bills), (((paycheck*2) - bills) * 12));
 
+fclose(fp);
 free(buf);
 }
 
