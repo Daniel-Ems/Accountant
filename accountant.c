@@ -2,6 +2,8 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <dirent.h>
 #include <time.h>
 
 
@@ -13,8 +15,7 @@ int main()
 // particular file path and then allow the user to select what they want to do. 
 
 //TODO You also need to create unique file names. 
-FILE *fp = fopen("//home//danny//Desktop//test.txt", "w");
-
+FILE *fp = fopen("//home//danny//Test//test.txt", "w");
 
 
 int flag = 0;
@@ -57,44 +58,44 @@ printf("Okay, Goodbye.\n");
 exit(0);
 }
 puts(" ");
-float paycheck;
+double paycheck;
 printf("How much money do you make a paycheck?\n");
-scanf("%f", &paycheck);
+scanf("%lf", &paycheck);
 
 //TODO Make the file write reflect their selection for weekly, biweekly,
 // or monthly. This should probably be done in the if statents, while 
 // probably also creating respective varibales to carry thoughout the program. 
-fprintf(fp,"paycheck = %.2f", paycheck);
+fprintf(fp,"paycheck = %.2lf\n", paycheck);
 
 
 int menu;
 
-printf("do you make %.2f\n(0)weekly\n(1)biweekly\n(2)monthly\n", paycheck);
+printf("do you make %.2lf\n(0)weekly\n(1)biweekly\n(2)monthly\n", paycheck);
 scanf("%d", &menu);
 
 if(menu == 0)
 {
-    printf("That means you bring home %.2f a month\n%.2f a quarter\n%.2f a year\n",
+    printf("That means you bring home %.2lf a month\n%.2lf a quarter\n%.2lf a year\n",
              (paycheck * 4), (paycheck * 13), (paycheck * 52));
 }
 else if(menu == 1)
 {
-    printf("That means you bring home %.2f a month\n%.2f a quarter\n%.2f a year\n",
+    printf("That means you bring home %.2lf a month\n%.2lf a quarter\n%.2lf a year\n",
              (paycheck * 2), ((paycheck/2)*13), ((paycheck/2) * 52));
 }
 else if(menu == 2)
 {
-     printf("That means you bring home %.2f biweekly\n%.2f a quarter\n%.2f a year\n",
+     printf("That means you bring home %.2lf biweekly\n%.2lf a quarter\n%.2lf a year\n",
              (paycheck/2), ((paycheck/4)*13), ((paycheck/4) * 52));
 }
 
 puts(" ");
 
-float bills;
+double bills;
 printf("Okay, and how much do you pay in bills a month?:");
-scanf("%f", &bills);
+scanf("%lf", &bills);
 
-printf("That means you have %.2f of expendable cash a month\n %.2f a year\n",
+printf("That means you have %.2lf of expendable cash a month\n %.2lf a year\n",
         ((paycheck * 2) - bills), (((paycheck*2) - bills) * 12));
 
 fclose(fp);
